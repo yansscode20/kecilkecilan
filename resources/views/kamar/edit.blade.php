@@ -1,48 +1,27 @@
-@extends('layout.app')
+<h2>Edit Kamar</h2>
 
-@section('content')
-
-<h3>Edit Kamar</h3>
-
-<form action="/kamar/{{$kamar->id}}" method="POST">
+<form action="{{ route('kamar.update',$kamar->id) }}" method="POST">
 
 @csrf
 @method('PUT')
 
-<div class="mb-3">
+Nomor Kamar
+<input type="text" name="nomor_kamar" value="{{ $kamar->nomor_kamar }}"><br><br>
 
-<label>Nomor Kamar</label>
+Tipe Kamar
+<input type="text" name="tipe_kamar" value="{{ $kamar->tipe_kamar }}"><br><br>
 
-<input type="text" name="nomor_kamar" value="{{$kamar->nomor_kamar}}" class="form-control">
+Harga
+<input type="number" name="harga" value="{{ $kamar->harga }}"><br><br>
 
-</div>
-
-<div class="mb-3">
-
-<label>Harga</label>
-
-<input type="number" name="harga" value="{{$kamar->harga}}" class="form-control">
-
-</div>
-
-<div class="mb-3">
-
-<label>Status</label>
-
-<select name="status" class="form-control">
-
-<option value="Kosong" {{$kamar->status=='Kosong'?'selected':''}}>Kosong</option>
-
-<option value="Terisi" {{$kamar->status=='Terisi'?'selected':''}}>Terisi</option>
-
+Status
+<select name="status">
+<option value="kosong" {{ $kamar->status == 'kosong' ? 'selected' : '' }}>Kosong</option>
+<option value="terisi" {{ $kamar->status == 'terisi' ? 'selected' : '' }}>Terisi</option>
 </select>
 
-</div>
+<br><br>
 
-<button class="btn btn-success">Update</button>
-
-<a href="/kamar" class="btn btn-secondary">Kembali</a>
+<button type="submit">Update</button>
 
 </form>
-
-@endsection

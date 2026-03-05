@@ -1,36 +1,23 @@
-@extends('layout.app')
+<h2>Tambah Kamar</h2>
 
-@section('content')
+<form action="{{ route('kamar.store') }}" method="POST">
+@csrf
 
-<h3>Keluhan Penyewa</h3>
+Nomor Kamar
+<input type="text" name="nomor_kamar"><br><br>
 
-<a href="/keluhan/create" class="btn btn-primary mb-3">Tambah Keluhan</a>
+Tipe Kamar
+<input type="text" name="tipe_kamar"><br><br>
 
-<table class="table table-bordered">
+Harga
+<input type="number" name="harga"><br><br>
 
-<tr>
-<th>No</th>
-<th>ID Penyewa</th>
-<th>Keluhan</th>
-<th>Status</th>
-</tr>
+Status
+<select name="status">
+<option value="kosong">Kosong</option>
+<option value="terisi">Terisi</option>
+</select><br><br>
 
-@foreach($keluhan as $k)
+<button type="submit">Simpan</button>
 
-<tr>
-
-<td>{{$loop->iteration}}</td>
-
-<td>{{$k->penyewa_id}}</td>
-
-<td>{{$k->isi_keluhan}}</td>
-
-<td>{{$k->status}}</td>
-
-</tr>
-
-@endforeach
-
-</table>
-
-@endsection
+</form>
